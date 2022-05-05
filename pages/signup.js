@@ -18,6 +18,7 @@ export default function Signup() {
     console.log(otp);
     if (pin == otp) {
       submitForm();
+
       setWrongotp(false);
 
       console.log("Logged In");
