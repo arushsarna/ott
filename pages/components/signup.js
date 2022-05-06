@@ -87,14 +87,14 @@ export default function Signup() {
             <div className="rounded-md shadow-sm -space-y-px">
               {!session && (
                 <div>
-                  <label for="phone" className="sr-only">
+                  <label htmlFor="phone" className="sr-only">
                     Phone No.
                   </label>
                   <input
                     id="phone"
                     name="phone"
                     type="phone"
-                    autocomplete="phone"
+                    autoComplete="phone"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Phone No."
@@ -105,14 +105,14 @@ export default function Signup() {
               )}
               {session && (
                 <div>
-                  <label for="otp" className="sr-only">
+                  <label htmlFor="otp" className="sr-only">
                     OTP
                   </label>
                   <input
                     id="otp"
                     name="otp"
                     type="number"
-                    autocomplete="otp"
+                    autoComplete="otp"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="OTP"
@@ -123,14 +123,14 @@ export default function Signup() {
               )}
 
               {/* <div>
-                <label for="password" className="sr-only">
+                <label htmlFor="password" className="sr-only">
                   Password
                 </label>
                 <input
                   id="password"
                   name="password"
                   type="password"
-                  autocomplete="current-password"
+                  autoComplete="current-password"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
@@ -149,7 +149,7 @@ export default function Signup() {
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <label
-                  for="remember-me"
+                  htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900"
                 >
                   {" "}
@@ -186,9 +186,9 @@ export default function Signup() {
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </span>
@@ -211,9 +211,9 @@ export default function Signup() {
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </span>
