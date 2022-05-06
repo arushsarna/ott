@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../slices/loginStatusSlice";
+import { noLogin } from "../slices/loginMenuSlice";
 export default function Signup() {
   const [phoneno, setPhoneno] = useState();
   const [otp, setOtp] = useState();
   const [pin, setPin] = useState();
   const [session, setSession] = useState(false);
   const [wrongotp, setWrongotp] = useState(false);
+  const dispatch = useDispatch();
 
   function enterotp() {
     const newpin = Math.floor(Math.random() * 1000000 + 1);
@@ -20,6 +24,11 @@ export default function Signup() {
       submitForm();
 
       setWrongotp(false);
+      function xd() {
+        dispatch(login());
+        dispatch(noLogin());
+      }
+      xd();
 
       console.log("Logged In");
     } else {
@@ -40,7 +49,6 @@ export default function Signup() {
       console.log(user.data);
       if (user.data) {
         // setLoginMenu(noLoginMenu);
-        // setLoginStatus(true);
       }
     }
     fetchData();
