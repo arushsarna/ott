@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 import { useEffect } from "react";
 import Signup from "./components/signup";
 import { useDispatch, useSelector } from "react-redux";
-import { yesLogin } from "./slices/loginMenuSlice";
-import { noLogin } from "./slices/loginMenuSlice";
-import { login } from "./slices/loginStatusSlice";
+import { yesLogin } from "../slices/loginMenuSlice";
+import { noLogin } from "../slices/loginMenuSlice";
+import { login } from "../slices/loginStatusSlice";
 
 export default function Body() {
   const dispatch = useDispatch();
@@ -18,51 +18,20 @@ export default function Body() {
   const [session, setSession] = useState(false);
   const [wrongotp, setWrongotp] = useState(false);
 
-  // const [msg]
-  // const [loginStatus, setLoginStatus] = useState(false);
   const loginStatus = useSelector((state) => state.loginStatus.loginStatus);
-  console.log(loginStatus);
-  //  const [loginstatus, setLoginStatus] = useState(false);
+
   const noLoginMenu =
     " hidden absolute left-1/4 top-1/4 bg-white h-1/2 w-1/2  ";
   const yesLoginMenu = "  absolute left-1/4 top-1/4 bg-white h-1/2 w-1/2  ";
   const [secret, setSecret] = useState("");
-  // const [loginMenu, setLoginMenu] = useState(noLoginMenu);
+
   const loginMenu = useSelector((state) => state.loginMenu.loginMenu);
-  // async function submitForm() {
-  //   const res = await fetch("/api/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ username, password }),
-  //   }).then((t) => t.json());
-  //   async function fetchData() {
-  //     const user = await fetch("/api/user").then((t) => t.json());
 
-  //     console.log(user.data);
-  //     if (user.data) {
-  //       //  setLoginMenu(noLoginMenu);
-  //       //  setLoginStatus(true);
-
-  //       function xd() {
-  //         dispatch(login());
-  //         dispatch(noLogin());
-  //       }
-  //       xd();
-  //     }
-  //   }
-  //   fetchData();
-  // }
   useEffect(() => {
     async function fetchData() {
       const user = await fetch("/api/user").then((t) => t.json());
-
-      console.log(user.data);
+      //*console.log(user.phoneno);
       if (user.data) {
-        //setLoginMenu(noLoginMenu);
-        // setLoginStatus(true);
-
         function xd() {
           dispatch(login());
           dispatch(noLogin());

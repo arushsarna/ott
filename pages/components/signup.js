@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../slices/loginStatusSlice";
-import { noLogin } from "../slices/loginMenuSlice";
+import { login } from "../../slices/loginStatusSlice";
+import { noLogin } from "../../slices/loginMenuSlice";
 export default function Signup() {
   const [phoneno, setPhoneno] = useState();
   const [otp, setOtp] = useState();
@@ -18,8 +18,9 @@ export default function Signup() {
     console.log(newpin);
   }
   function verifyOTP() {
-    console.log(pin);
-    console.log(otp);
+    // console.log(pin);
+    //\
+    //  console.log(otp);
     if (pin == otp) {
       submitForm();
 
@@ -30,7 +31,7 @@ export default function Signup() {
       }
       xd();
 
-      console.log("Logged In");
+      // console.log("Logged In");
     } else {
       setWrongotp(true);
     }
@@ -46,7 +47,7 @@ export default function Signup() {
     async function fetchData() {
       const user = await fetch("/api/user").then((t) => t.json());
 
-      console.log(user.data);
+      // console.log(user.data);
       if (user.data) {
         // setLoginMenu(noLoginMenu);
       }

@@ -10,18 +10,19 @@ export default function handler(req, res) {
     return;
   }
 
-  const { username, password } = req.body;
+  const { phoneno } = req.body;
 
   //res.status(200).json({ name: "John Doe" });
 
   const token = sign(
     {
-      username,
-      admin: username === "admin" && password === "password",
+      phoneno,
+
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
     },
     KEY
   );
+  //console.log(token);
   const serialised = serialize("JWT", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
