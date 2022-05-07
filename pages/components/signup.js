@@ -45,10 +45,9 @@ export default function Signup() {
       body: JSON.stringify({ phoneno }),
     }).then((t) => t.json());
     async function fetchData() {
-      const user = await fetch("/api/user").then((t) => t.json());
+      const auth = await fetch("/api/auth").then((t) => t.json());
 
-      // console.log(user.data);
-      if (user.data) {
+      if (auth.data) {
         // setLoginMenu(noLoginMenu);
       }
     }

@@ -29,9 +29,9 @@ export default function Body() {
 
   useEffect(() => {
     async function fetchData() {
-      const user = await fetch("/api/user").then((t) => t.json());
+      const auth = await fetch("/api/auth").then((t) => t.json());
       //*console.log(user.phoneno);
-      if (user.data) {
+      if (auth.data) {
         function xd() {
           dispatch(login());
           dispatch(noLogin());

@@ -2,8 +2,12 @@
 import jwt from "jsonwebtoken";
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
+import createUser from "./createUser";
+import checkUser from "./checkUser";
 const KEY = "fhdjifhidfijsd";
-export default function handler(req, res) {
+import user from "../../models/user";
+import dbConnect from "./db";
+export default async function handler(req, res) {
   if (!req.body) {
     res.statusCode = 404;
     res.end("Error");
@@ -11,9 +15,20 @@ export default function handler(req, res) {
   }
 
   const { phoneno } = req.body;
-
-  //res.status(200).json({ name: "John Doe" });
-
+  let userExists = true;
+  await dbConnect();
+  user.find({ phoneno }, (error, data) => {
+    if (error) {
+      res.json(error);
+    } else {
+      if (data.length == 0) {
+        user.create({ phoneno });
+      }
+    }
+  });
+  // if (!userExists) {
+  //   await user.create({ phoneno });
+  // }
   const token = sign(
     {
       phoneno,
@@ -22,7 +37,8 @@ export default function handler(req, res) {
     },
     KEY
   );
-  //console.log(token);
+
+  console.log(token);
   const serialised = serialize("JWT", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
@@ -33,6 +49,8 @@ export default function handler(req, res) {
   res.setHeader("Set-Cookie", serialised);
   res.status(200).json({ message: "Success" });
 }
+
+// console.log(isUser);
 
 //console.log(req.body.username);
 // console.log(req.body);
