@@ -4,13 +4,14 @@ import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 
-import PageChange from "components/PageChange/PageChange.js";
+import PageChange from "../components/PageChange/PageChange.js";
 import { Provider } from "react-redux";
 
 import { store } from "../store";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "styles/tailwind.css";
-import "styles/index.css";
+
+import "../styles/tailwind.css";
+import "../styles/index.css";
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
   document.body.classList.add("body-page-transition");

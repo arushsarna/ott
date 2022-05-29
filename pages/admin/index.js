@@ -3,7 +3,7 @@ import Link from "next/link";
 
 // layout for page
 
-import Auth from "layouts/Auth.js";
+import Auth from "../../layouts/Auth.js";
 import { useRouter } from "next/router";
 export default function Index() {
   const router = useRouter();
