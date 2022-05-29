@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../slices/loginStatusSlice";
-import { noLogin } from "../../slices/loginMenuSlice";
+import { login } from "../slices/loginStatusSlice";
+import { useSelector } from "react-redux";
+import { noLogin } from "../slices/loginMenuSlice";
 export default function Signup() {
   const [phoneno, setPhoneno] = useState();
   const [otp, setOtp] = useState();
@@ -10,7 +11,7 @@ export default function Signup() {
   const [session, setSession] = useState(false);
   const [wrongotp, setWrongotp] = useState(false);
   const dispatch = useDispatch();
-
+  const loginMenu = useSelector((state) => state.loginMenu.loginMenu);
   function enterotp() {
     const newpin = Math.floor(Math.random() * 1000000 + 1);
     setPin(newpin);
@@ -44,14 +45,14 @@ export default function Signup() {
       },
       body: JSON.stringify({ phoneno }),
     }).then((t) => t.json());
-    async function fetchData() {
-      const auth = await fetch("/api/auth").then((t) => t.json());
+  }
+  async function fetchData() {
+    const auth = await fetch("/api/auth").then((t) => t.json());
 
-      if (auth.data) {
-        // setLoginMenu(noLoginMenu);
-      }
+    console.log(auth);
+    if (auth.data) {
+      // setLoginMenu(noLoginMenu);
     }
-    fetchData();
   }
   return (
     <div>
@@ -84,19 +85,20 @@ export default function Signup() {
             method="POST"
           >
             <input type="hidden" name="remember" value="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="rounded-md shadow-sm -space-y-px appearance-none">
               {!session && (
-                <div>
+                <div className="appearance-none">
                   <label htmlFor="phone" className="sr-only">
                     Phone No.
                   </label>
                   <input
+                    className="numberupdown:none appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    minLength="10"
+                    maxLength="10"
                     id="phone"
-                    name="phone"
-                    type="phone"
+                    type="number"
                     autoComplete="phone"
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Phone No."
                     value={phoneno}
                     onChange={(e) => setPhoneno(e.target.value)}
@@ -109,6 +111,8 @@ export default function Signup() {
                     OTP
                   </label>
                   <input
+                    minLength="6"
+                    maxLength="6"
                     id="otp"
                     name="otp"
                     type="number"
@@ -222,6 +226,24 @@ export default function Signup() {
               )}
             </div>
           </form>
+          <button
+            onClick={() => {
+              dispatch(noLogin());
+            }}
+            className="bg-blue-500 rounded-2xl p-2 text-white "
+          >
+            Close window
+          </button>
+          {session && (
+            <button
+              onClick={() => {
+                setSession(false);
+              }}
+              className="bg-blue-500 rounded-2xl p-2 text-white "
+            >
+              Go back
+            </button>
+          )}
         </div>
       </div>
     </div>

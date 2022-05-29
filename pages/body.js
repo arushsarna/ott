@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import jwt from "jsonwebtoken";
 import { useEffect } from "react";
-import Signup from "./components/signup";
+import Signup from "./signup";
 import { useDispatch, useSelector } from "react-redux";
 import { yesLogin } from "../slices/loginMenuSlice";
 import { noLogin } from "../slices/loginMenuSlice";
@@ -20,18 +20,48 @@ export default function Body() {
 
   const loginStatus = useSelector((state) => state.loginStatus.loginStatus);
 
+  const [subscription, setSubscription] = useState("free");
+  const [data, setData] = useState([]);
   const noLoginMenu =
     " hidden absolute left-1/4 top-1/4 bg-white h-1/2 w-1/2  ";
   const yesLoginMenu = "  absolute left-1/4 top-1/4 bg-white h-1/2 w-1/2  ";
   const [secret, setSecret] = useState("");
 
   const loginMenu = useSelector((state) => state.loginMenu.loginMenu);
+  useEffect(() => {
+    // async function checkAuth() {
+    //   //*console.log(user.phoneno);
 
+    // }
+    // checkAuth();
+    async function fetchData() {
+      const auth = await fetch("/api/auth").then((t) => t.json());
+      setPhoneno(auth.phoneno);
+      const res = await fetch("/api/checkSubscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneno: auth.phoneno }),
+      }).then((t) => t.json());
+      if (res == "free") {
+        setSubscription("free");
+      } else {
+        setSubscription("paid");
+        const content = await fetch("/api/getContent").then((t) => t.json());
+        setData(content);
+        console.log(data);
+      }
+      //   if (subscription.data) {
+      //   }
+    }
+    fetchData();
+  }, []);
   useEffect(() => {
     async function fetchData() {
       const auth = await fetch("/api/auth").then((t) => t.json());
-      //*console.log(user.phoneno);
       if (auth.data) {
+        console.log(auth.data);
         function xd() {
           dispatch(login());
           dispatch(noLogin());
@@ -79,6 +109,27 @@ export default function Body() {
             </button>
           )}
         </div>
+      </div>
+      <div className="flex justify-center shadow-lg  ">
+        {data.map((xd) => (
+          <div
+            key={xd.id}
+            className="w-[300px] h-[200px]   m-5 overflow-visible"
+          >
+            <video
+              key={xd.id}
+              className={
+                "  w-[300px] h-[200px] object-cover  hover:scale-125  overflow-visible hover:border-blue-400  border-4 hover:rounded-none rounded-lg ease-in-out duration-200 hover:ease-in-out"
+              }
+              src={xd.streamlink}
+              
+              onMouseEnter={(event) => event.target.play()}
+              onMouseOut={(event) => event.target.pause()}
+              poster={xd.thumbnail}
+              muted
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

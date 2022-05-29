@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  //   type: {
-  //     type: String,
-  //     required: true,
-  //   },
-
   phoneno: {
     type: String,
     minlength: [10, "Enter a valid Phone Number"],
@@ -13,23 +8,31 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: [true, "Phone Number already registered please Login "],
   },
-  //   name: {
-  //     type: String,
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    // unique: [true, "Email already registered please Login "],
+  },
 
-  //     required: true,
-  //   },
-  //   email: {
-  //     type: String,
-  //     unique: [true, "Email already registered please Login "],
-  //     required: true,
-  //   },
+  dob: {
+    type: Date,
+  },
+  subscriptionType: {
+    type: String,
 
-  //   age: {
-  //     type: Number,
-  //     required: true,
-  //   },
+    required: true,
+    default: "free",
+  },
+  multilogin: {
+    type: Array,
+    required: true,
+    maxlength: 3,
+  },
 });
 
+userSchema.set("timestamps", true);
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;
