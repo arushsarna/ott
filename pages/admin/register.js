@@ -2,8 +2,7 @@ import React from "react";
 
 // layout for page
 import { useRouter } from "next/router";
-
-import Auth from "../../layouts/Auth.js";
+import Auth from "layouts/Auth.js";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 export default function Register() {

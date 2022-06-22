@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 // components
 
-import CardLineChart from "../../components/Cards/CardLineChart.js";
-import CardBarChart from "../../components/Cards/CardBarChart.js";
-import CardPageVisits from "../../components/Cards/CardPageVisits.js";
-import CardSocialTraffic from "../../components/Cards/CardSocialTraffic.js";
+import CardLineChart from "components/Cards/CardLineChart.js";
+import CardBarChart from "components/Cards/CardBarChart.js";
+import CardPageVisits from "components/Cards/CardPageVisits.js";
+import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 import { useEffect } from "react";
 // layout for page
-import Admin from "../../layouts/Admin.js";
+import Admin from "layouts/Admin.js";
 import { useRouter } from "next/router";
 export default function Dashboard() {
   const [login, setLogin] = useState(false);

@@ -116,7 +116,7 @@ export default function Body() {
             key={xd.id}
             className="w-[300px] h-[200px]   m-5 overflow-visible"
           >
-            <video
+            {/* <video
               key={xd.id}
               className={
                 "  w-[300px] h-[200px] object-cover  hover:scale-125  overflow-visible hover:border-blue-400  border-4 hover:rounded-none rounded-lg ease-in-out duration-200 hover:ease-in-out"
@@ -127,7 +127,7 @@ export default function Body() {
               onMouseOut={(event) => event.target.pause()}
               poster={xd.thumbnail}
               muted
-            />
+            /> */}
           </div>
         ))}
       </div>

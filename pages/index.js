@@ -7,8 +7,8 @@ import Body from "./body";
 export default function Home() {
   return (
     <div className="h-screen">
-      <div className="absolute -z-10">
-        <Image className="  object-cover" src={kgf} />
+      <div className="absolute -z-10 ">
+        <Image className="  object-fill  w-full h-screen" src={kgf} />
       </div>
       <Navbar />
       <Body />

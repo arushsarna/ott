@@ -1,9 +1,10 @@
 import React from "react";
 
 // components
-import CardStats from "../Cards/CardStats";
 
-export default function HeaderStats() {
+import CardStats from "components/Cards/CardStats.js";
+
+export default function HeaderStats({ newUser, sales }) {
   return (
     <>
       {/* Header */}
@@ -27,7 +28,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="NEW USERS"
-                  statTitle="2,356"
+                  statTitle={newUser}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -39,7 +40,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="SALES"
-                  statTitle="924"
+                  statTitle={sales}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"

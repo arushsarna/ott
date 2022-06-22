@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Admin from "../../layouts/Admin.js";
+import Admin from "layouts/Admin.js";
 import { useRouter } from "next/router";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
